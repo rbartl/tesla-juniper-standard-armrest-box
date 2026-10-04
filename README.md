@@ -86,3 +86,8 @@ python3 -m venv /tmp/cadenv
 PETG (heat-resistant for a parked car in summer), 0.2 mm layer height,
 3 walls, 12% infill, no supports. Optionally, thin felt/TPE strips
 under the collar to reduce rattling.
+
+
+## Design
+
+Done with Claude Sonnet including 20 botched failures.
