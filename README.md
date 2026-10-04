@@ -1,6 +1,6 @@
 # TeslaBox – Center Console Insert (Model Y Juniper *Standard*)
 
-*[Deutsch](README-de.md)*
+*[Deutsch](README.de.md)*
 
 A 3D-printable organizer insert for the deep armrest bin of the Tesla
 Model Y "Juniper" Standard center console (2025/2026). Parametric CAD
