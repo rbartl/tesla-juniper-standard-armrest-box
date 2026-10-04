@@ -1,0 +1,4 @@
+.claude/
+legacy/
+__pycache__/
+*.pyc
