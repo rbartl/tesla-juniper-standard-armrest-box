@@ -1,5 +1,7 @@
 # TeslaBox – Einhänge-Einsatz Mittelkonsole (Model Y Juniper *Standard*)
 
+*[English](README.en.md)*
+
 Ein 3D-druckbarer Ablage-Einsatz für das tiefe Armlehnenfach der
 Mittelkonsole eines Tesla Model Y "Juniper" Standard (2025/2026).
 Parametrisches CAD-Modell (Python/CadQuery, echte Fillets, OCCT-Kernel)
