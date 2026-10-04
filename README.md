@@ -1,60 +1,59 @@
-# TeslaBox – Einhänge-Einsatz Mittelkonsole (Model Y Juniper *Standard*)
+# TeslaBox – Center Console Insert (Model Y Juniper *Standard*)
 
-*[English](README.en.md)*
+*[Deutsch](README-de.md)*
 
-Ein 3D-druckbarer Ablage-Einsatz für das tiefe Armlehnenfach der
-Mittelkonsole eines Tesla Model Y "Juniper" Standard (2025/2026).
-Parametrisches CAD-Modell (Python/CadQuery, echte Fillets, OCCT-Kernel)
-statt eines fixen STLs – alle Maße lassen sich an das eigene Fahrzeug
-anpassen.
+A 3D-printable organizer insert for the deep armrest bin of the Tesla
+Model Y "Juniper" Standard center console (2025/2026). Parametric CAD
+model (Python/CadQuery, real fillets, OCCT kernel) instead of a fixed
+STL – all dimensions can be adjusted to the actual vehicle.
 
 ![TeslaBox](teslabox_iso.png)
 
-Gedruckt und eingebaut:
+Printed and installed:
 
-![Eingebaut im Fahrzeug](teslabox_eingebaut.jpg)
-![Herausgenommen, mit Inhalt](teslabox_ausgebaut.jpg)
+![Installed in the vehicle](teslabox_eingebaut.jpg)
+![Removed, with contents](teslabox_ausgebaut.jpg)
 
-## Was das ist
+## What this is
 
-Das Fach hat oben einen umlaufenden **Falz** (eine kleine Stufe, ein
-paar mm unter der Konsolenoberfläche, nur an den beiden Längsseiten).
-Der Einsatz hat an beiden Längsseiten einen schmalen **Kragen**, der
-genau in diesem Falz aufliegt: das Teil *hängt sich ein* und bleibt
-bündig mit der Konsolenoberfläche, statt auf den Fachboden zu fallen.
-Das reale Fach wird nach unten leicht enger – der Korpus ist deshalb
-unterhalb des Kragens konisch verjüngt, damit er sich beim Einsetzen
-leicht klemmt statt zu klappern.
+The bin has a small **ledge** running around the top, a few mm below
+the console surface, present only on the two long sides. The insert
+has a matching narrow **collar** on both long sides that rests exactly
+in that ledge: the part *hangs in place* and stays flush with the
+console surface instead of dropping to the bottom of the bin. The real
+bin narrows slightly toward the bottom, so the body is conically
+tapered below the collar, making it grip lightly as it's inserted
+instead of rattling around.
 
-Vorne sitzt ein massiver Block mit zwei aufrechten Schlitzen
-nebeneinander für Kreditkarten (Scheckkarte hochkant, 85,6 × 54 mm).
-An einer Seitenwand läuft oben eine offene **Münzrinne** für Kleingeld,
-deren Unterseite als Keil geformt ist, damit sie beim FDM-Druck ganz
-ohne Stützmaterial auskommt. Der Rest ist offene Ablage.
+The front has a solid block with two upright slots side by side for
+credit cards (card held vertically, 85.6 × 54 mm). An open **coin
+channel** runs along the top of one side wall, with the underside
+shaped as a wedge so it prints fully support-free on an FDM printer.
+The rest is open storage space.
 
-Alle Konstruktionsdetails (Maße, Begründungen, verworfene Alternativen)
-stehen ausführlich in [`SPEC.md`](SPEC.md) – werkzeugunabhängig
-beschrieben, nicht an CadQuery gebunden.
+All construction details (dimensions, reasoning, discarded
+alternatives) are documented in detail in [`SPEC.md`](SPEC.md) – a
+tool-independent description, not tied to CadQuery.
 
-## ⚠️ Zuerst messen
+## ⚠️ Measure first
 
-Die Innenmaße des Fachs sind nirgends dokumentiert (Tesla veröffentlicht
-sie nicht, Zubehörhändler nennen nur Außenmaße, und die *Standard*-Konsole
-weicht von Premium/Performance ab). Vor dem Druck also die Parameter in
-`teslabox.py` (Falzmaße, Fachtiefe, Eckradius) am eigenen Fahrzeug
-überprüfen.
+The interior dimensions of the bin aren't documented anywhere (Tesla
+doesn't publish them, accessory vendors only list exterior dimensions,
+and the *Standard* console differs from Premium/Performance). Before
+printing, check the parameters in `teslabox.py` (ledge dimensions, bin
+depth, corner radius) against the actual vehicle.
 
-## Dateien
+## Files
 
-| Datei | Zweck |
-|-------|-------|
-| `teslabox.py` | Hauptmodell (CadQuery / OCCT) |
-| `teslabox.stl` | fertiger Export zum Drucken |
-| `teslabox_iso.png` | Vorschaubild (oben) |
-| `SPEC.md` | ausführliche, werkzeugunabhängige Objektbeschreibung |
-| `render.py` | VTK-Vorschaubilder aus STL erzeugen (`render.py <stl> <png> [az] [el]`) |
+| File | Purpose |
+|------|---------|
+| `teslabox.py` | main model (CadQuery / OCCT) |
+| `teslabox.stl` | ready-to-print export |
+| `teslabox_iso.png` | preview image (above) |
+| `SPEC.md` | detailed, tool-independent object description |
+| `render.py` | generate preview PNGs from an STL (`render.py <stl> <png> [az] [el]`) |
 
-## Toolchain (einmalig)
+## Toolchain (one-time setup)
 
 ```bash
 curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
@@ -67,23 +66,23 @@ python3 -m venv /tmp/cadenv
 /tmp/cadenv/bin/python teslabox.py
 ```
 
-## Wichtigste Parameter in `teslabox.py`
+## Key parameters in `teslabox.py`
 
-| Parameter | Zweck |
-|-----------|-------|
-| `FALZ_BREITE`, `FALZ_TIEFE` | gemessene Falz-Öffnung / Falz-Stufentiefe |
-| `FACH_BREITE`, `FACH_TIEFE` | gemessene Innenmaße des Fachs |
-| `ECK_RADIUS` | gemessener Innen-Eckradius |
-| `GESAMT_LAENGE` | Baulänge des Einsatzes in X (das Fach ist länger – der Einsatz belegt nur den vorderen Teil) |
-| `VORNE_FREI` | Freiraum vorne ohne Kragen (Platz für die Kartenslots) |
-| `KORPUS_HOEHE` | Gesamthöhe des Einsatzes |
-| `WAND`, `BODEN` | Wand-/Bodenstärke |
-| `N_SLOT`, `SLOT_X_DICKE`, `SLOT_Y_LAENGE`, `SLOT_TIEFE` | Anzahl/Maße der Kartenslots |
-| `MUENZE_R`, `MUENZE_GERADE` | Querschnitt der Münzrinne |
-| `BODEN_VERJUENGUNG` | Konus je Seite am Boden, damit der Einsatz klemmt |
+| Parameter | Purpose |
+|-----------|---------|
+| `FALZ_BREITE`, `FALZ_TIEFE` | measured ledge opening width / ledge step depth |
+| `FACH_BREITE`, `FACH_TIEFE` | measured interior dimensions of the bin |
+| `ECK_RADIUS` | measured interior corner radius |
+| `GESAMT_LAENGE` | build length of the insert in X (the bin is longer – the insert only covers the front part) |
+| `VORNE_FREI` | clearance at the front with no collar (room for the card slots) |
+| `KORPUS_HOEHE` | overall height of the insert |
+| `WAND`, `BODEN` | wall / floor thickness |
+| `N_SLOT`, `SLOT_X_DICKE`, `SLOT_Y_LAENGE`, `SLOT_TIEFE` | number/dimensions of the card slots |
+| `MUENZE_R`, `MUENZE_GERADE` | cross-section of the coin channel |
+| `BODEN_VERJUENGUNG` | taper per side at the bottom, so the insert grips |
 
-## Druck
+## Printing
 
-PETG (hitzefest fürs aufgeheizte Auto), 0,2 mm, 3 Wände, 12 % Infill,
-kein Support. Optional dünne Filz-/TPE-Streifen unter den Kragen gegen
-Klappern.
+PETG (heat-resistant for a parked car in summer), 0.2 mm layer height,
+3 walls, 12% infill, no supports. Optionally, thin felt/TPE strips
+under the collar to reduce rattling.
